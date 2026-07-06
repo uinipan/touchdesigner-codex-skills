@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD UI Panel Interface Tutorial"
+  short_description: "Reusable TD Container and Panel UI workflows."
+  default_prompt: "Use this skill to learn a TouchDesigner Container COMP, Panel COMP, control UI, perform mode interface, button, slider, table, or custom tool tutorial and produce reusable UI block guidance."
