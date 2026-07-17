@@ -12,7 +12,7 @@ This repository is paired with [touchdesigner-codex-plugins](https://github.com/
 skills/
   td-audio-reactive-tutorial/
     references/
-    companion-skills/td-audio-plugin-handoff/
+  td-audio-plugin-handoff/
   td-ui-panel-interface-tutorial/
   td-glsl-control-panel/
   td-particle-instancing-tutorial/
