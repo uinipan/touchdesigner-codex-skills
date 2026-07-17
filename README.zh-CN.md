@@ -36,7 +36,9 @@ workflows/
 | `td-particle-instancing-tutorial` | 构建并排查粒子、点云、图片粒子和实例化系统。 |
 | `td-progressive-region-reveal` | 通过触发信号逐步激活不重复区域，并维护完成与重置状态。 |
 
-## Workflows
+## 工作流
+
+这些工作流主要作为 `uinipan` 的自用备份与公开参考，带有较强的本机环境和个人工作习惯假设。其他人使用前可能需要调整路径、依赖和运行环境，通用性低于上面的 Skills。
 
 | 工作流 | 用途 |
 | --- | --- |

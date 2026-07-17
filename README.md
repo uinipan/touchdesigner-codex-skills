@@ -38,6 +38,8 @@ Only skills with meaningful, reusable content are published. Placeholder directi
 
 ## Workflows
 
+These workflows are published mainly for personal reuse and reference. They reflect `uinipan`'s local setup and working habits, so paths, dependencies, and environment assumptions may need adjustment before use. They are less general-purpose than the skills above.
+
 | Workflow | Purpose |
 | --- | --- |
 | `auto-touchdesigner-mcp` | Bootstrap and repair the TouchDesigner MCP WebServer, then inspect or modify a live project. |
