@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD Particle and Instancing"
+  short_description: "Build and debug TD particles and image instancing"
+  default_prompt: "Use $td-particle-instancing-tutorial to build or diagnose a version-aware TouchDesigner particle system and validate its source, motion, render, controls, and performance."

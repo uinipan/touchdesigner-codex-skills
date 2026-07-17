@@ -51,8 +51,8 @@ Use these recipes as the stable buckets for future audio tutorials. Add tutorial
 - `spectrum-top -> image/mask/displacement source`: `Audio Spectrum CHOP -> CHOP to TOP -> TOP processing`. Produces an image/texture rather than a single parameter value. Use for lines, bars, scanlines, masks, displacement maps, UV offsets, and shader texture inputs. Preserve resolution, orientation, channel use, TOP format, and whether the image is a source layer or a control map.
 - `audio-analysis-comp -> role-separated control bus`: `Audio Analysis COMP -> Select CHOP -> Rename/Null CHOP`. Produces a bus of ready-made channels such as volume, kick, snare, or other analysis outputs. Preserve which channels are available, which are continuous, which are hard triggers, and why one channel should not drive every visual decision.
 - `signal-to-target-mapping -> downstream handoff`: `audio signal -> mapping/smoothing -> visual target`. Documents how audio-derived data enters another direction: TOP glitch, particles/instancing, GLSL uniforms/textures, SOP deformation, render/post controls, or UI. Keep the audio skill responsible for signal extraction and shape; let the downstream direction skill own the visual system details.
-- `audio-filein-peak-speed block`: `Audio File In -> Math(chanop avg, gain) -> Analyze maximum -> Filter -> Math/Null + Speed`. Use for a compact overall-energy block when a project needs a continuous envelope plus an accumulated motion driver. Keep this as an internal block of this skill; read `references/kick-filein-flow.md` when exact tested node details are needed.
-- `audio-kick-rms-spectrum block`: `Audio File In -> Audio Analysis kick/snare -> Count`, plus `RMS Power -> Speed`, plus `Audio Spectrum -> Null`. Use for the `kick.3.toe` style three-lane audio block where event triggers, continuous motion, and spectrum data stay separate. Keep this as an internal block of this skill; read `references/kick-rms-spectrum-flow.md` when exact tested node details are needed.
+- `audio-filein-peak-speed block`: `Audio File In -> Math(chanop avg, gain) -> Analyze maximum -> Filter -> Math/Null + Speed`. Use for a compact overall-energy block when a project needs a continuous envelope plus an accumulated motion driver. Read `references/td-audio-filein-peak-speed.md` when exact tested node details are needed.
+- `audio-kick-rms-spectrum block`: `Audio File In -> Audio Analysis kick/snare -> Count`, plus `RMS Power -> Speed`, plus `Audio Spectrum -> Null`. Use for a three-lane audio block where event triggers, continuous motion, and spectrum data stay separate. Read `references/td-audio-kick-rms-spectrum.md` when exact tested node details are needed.
 
 ## Internal Audio Blocks
 
@@ -101,6 +101,15 @@ math4 -> audiospect1(mode visual, fftsize 8192, frequencylog 1, highfreqboost 0.
 - `math5/chan1`: RMS-derived cumulative motion/progress driver for scroll, rotation, noise phase, texture offset, or time index.
 - `null8`: raw spectrum data with many samples. Reduce it into bands or convert it with CHOP to TOP before expecting a convenient visual control.
 - Build as loose project-level operators by default so thresholds, filters, speed, and spectrum parameters stay inspectable. Package into a Base/tox only when explicitly requested.
+- Before building the event lane, resolve the `Audio Analysis COMP` source. Do not assume `/project1/audioAnalysis1` exists in every project.
+  - First search the target project for a COMP whose `out1` channels include both `kick` and `snare`, ideally with the full bus `low`, `mid`, `high`, `kick`, `snare`, `rythm`, `smsd`, `fmsd`, and `spectralCentroid`.
+  - If a valid component exists, copy it into the new loose block as `<prefix>audioAnalysis` so the new workflow is independently editable.
+  - If no valid component exists, load the Palette tox directly instead of asking the user to drag it: `C:\Program Files\Derivative\TouchDesigner\Samples\Palette\Tools\audioAnalysis.tox`.
+  - The Palette tox loads as an outer container whose actual Audio Analysis component is usually the child `audioAnalysis`. After `loaded = parent.loadTox(path)`, use `loaded.op('audioAnalysis')` when the loaded root has no direct `out1`.
+  - Rename or copy the actual Audio Analysis component to `<prefix>audioAnalysis`, then connect the new audio-source null to it.
+  - After loading or copying, verify `<prefix>audioAnalysis/out1` exists and exposes `kick` and `snare`. If it does not, report the missing channel set and do not create a broken `select(kick snare)` chain.
+  - If the Palette tox is missing or cannot load, then ask the user to add the Palette Audio Analysis COMP once, or provide/import a known-good `.tox`, then continue the build.
+  - Only use a hand-built kick/snare fallback when the user explicitly accepts approximate detection. Label it as fallback because it will not match the packaged Audio Analysis COMP thresholds or channel set.
 - For a reusable Base, include or copy a working `Audio Analysis COMP` inside the Base; do not make a Base that only references an external `/project1/audioAnalysis1/out1`.
 
 ## Downstream Handoffs
@@ -135,32 +144,32 @@ math4 -> audiospect1(mode visual, fftsize 8192, frequencylog 1, highfreqboost 0.
   - `kick` / `snare`: `Audio Analysis COMP -> Select CHOP`, used as discrete triggers for `Switch TOP`, `Invert TOP`, color toggles, and hard visual state changes.
   - `spectrum`: `Audio Spectrum CHOP -> CHOP to TOP`, used directly as source imagery for lines, bars, grids, and scanline masks.
 - When documenting beat-triggered switches, record whether the target parameter expects a pulse, binary index, or smoothed value; wrong signal shape causes flicker or no switching.
-- From TD MCP testing in `audioskilltest.toe`, synthetic block tests can use `lfoCHOP` as a stand-in for audio before real sound is available:
+- For synthetic validation, use `lfoCHOP` as a stand-in for audio before real sound is available:
   - `lfoCHOP -> lagCHOP -> nullCHOP` can simulate `volume-envelope -> continuous parameter`.
   - `lfoCHOP -> logicCHOP -> triggerCHOP -> nullCHOP` can simulate `beat-trigger -> visual switch/reset`.
   - `noiseTOP -> levelTOP -> outTOP` with `levelTOP.brightness1` driven by the simulated envelope is enough to visually confirm mapping, smoothing, and nonblank output.
   - When executing TD Python through the MCP HTTP endpoint, create operators by string type names such as `parent.create('lfoCHOP', 'amp_source')`; class globals such as `lfoCHOP` may not be defined in that execution context.
-- From real Audio File In testing in `audioskilltest.toe`, prefer testing with actual audio as soon as a source exists:
+- For real Audio File In validation, prefer testing with actual audio as soon as a source exists:
   - `audiofileinCHOP -> analyzeCHOP(function='rmspower') -> mathCHOP -> lagCHOP -> nullCHOP` produced a usable `volume-envelope -> continuous parameter` chain.
   - In TouchDesigner 2023, `Analyze CHOP` exposes RMS as menu name `rmspower` / label `RMS Power`, not `rms`.
   - Start by watching observed values before range mapping. A too-small Math CHOP input range makes the visual stay maxed out; retune the source range before changing many visual targets.
   - For quick visual inspection, drive `levelTOP.brightness1` from the mapped envelope and turn on viewers for the source CHOP, analysis CHOP, mapped Null CHOP, Level TOP, and Out TOP.
   - Do not turn on `display` or `render` flags just to inspect a test block. Keep `viewer=True` for observation and leave display/render ownership to the actual project output chain.
-- Additional TD 2023 operator facts from `audioskilltest.toe`:
+- Additional TouchDesigner 2023 operator facts:
   - The Audio Spectrum CHOP type string is `audiospectrumCHOP`, not `audioSpectrumCHOP`.
   - `audiospectrumCHOP -> choptoTOP` should be wired by setting `choptoTOP.par.chop` to the spectrum CHOP path; do not connect the CHOP output connector directly into the TOP input.
   - Useful initial `audiospectrumCHOP` parameters are `mode='visual'`, `fftsize='1024'`, `frequencylog=1`, `highfreqboost=0.5`, and `outlength=128`.
   - A first CHOP to TOP spectrum preview may appear as a very thin nonblank line when `layout='rowscropped'`, because the spectrum CHOP can have very long sample rows and only a few channels. Treat that as a layout problem, not a failed audio analysis.
   - For an operable spectrum texture, set `choptoTOP.par.layout='square'`, `outputresolution='custom'`, `resolutionw=512`, `resolutionh=512`, and inspect the result before adding masks or composites.
   - `triggerCHOP` exposes parameters such as `threshold`, `attack`, and `decay`; `countCHOP` exposes `limitmax`, `triggeron`, and `output`. Use these to turn an envelope into pulse/counter candidates, but tune thresholds after watching the song.
-- Spectrum TOP mask test pattern from `audioskilltest.toe`:
+- Spectrum TOP mask test pattern:
   - First fix the CHOP to TOP layout. `rowscropped` can make the spectrum look like a thin line; `square` produces a usable 2D texture from the long sample row.
   - `real_spectrum_to_top(square) -> levelTOP -> thresholdTOP -> blurTOP` can turn the spectrum into a larger mask/control texture.
   - If most energy is concentrated near the bottom, crop or fit the low-frequency band only after confirming the source texture dimensions. `Crop TOP` defaults to fraction units; switch crop units to pixels when using pixel counts.
   - Tune by inspecting the mask-only TOP before the final composite. Over-brightening plus `Composite TOP Add` can wash the whole preview white.
   - A stable first composite is `noise/background TOP + spectrum mask -> Composite TOP Multiply`; use Add/Over only after the mask has a controlled range.
   - Keep mask preview nodes viewer-only (`viewer=True`, `display=False`, `render=False`) so the test block does not take over the project output.
-- Project learning from `kick.toe`:
+- Reusable packaged-analyzer pattern:
   - This project contains two distinct audio-processing methods. Method A is a packaged multi-role analyzer: `audiofilein1 -> null5 -> audioAnalysis1 -> out1`, then `select1(kick snare) -> count2` for event counters. Method B is hand-built direct CHOP processing from the same source: separate loudness, RMS/speed, and spectrum branches outside the COMP.
   - Treat a finished audio-analysis COMP as a reusable control bus, not just a black box. In this project `audioAnalysis1/out1` exposes nine 60 FPS one-sample channels: `low`, `mid`, `high`, `kick`, `snare`, `rythm`, `smsd`, `fmsd`, and `spectralCentroid`.
   - The useful top-level handoff from Method A is `audioAnalysis1/out1 -> select1(kick snare) -> count2`. `select1` isolates discrete kick/snare channels; `count2` turns them into accumulating counters for switch indices, state changes, or event-driven visual variation.
@@ -168,12 +177,13 @@ math4 -> audiospect1(mode visual, fftsize 8192, frequencylog 1, highfreqboost 0.
   - `audioAnalysis1` splits bands internally with `audiofilterCHOP -> renameCHOP(low/mid/high) -> analyzeCHOP(rmspower) -> math/limit/filter -> switch -> Null`. Observed tuning: low gain `2.0`, threshold `0.1`; mid gain `4.0`, threshold `0.1`, smooth `0.1`; high gain `3.5`, threshold `0.2`, smooth `0.1`.
   - Kick/snare detection inside the COMP is thresholded from band energy: kick uses low-band `rmspower -> math preoff -0.038 -> limit -> logic -> trigger -> null_kickSignal`; snare uses high-band `rmspower -> math preoff -0.311515 -> limit -> logic -> nullsnareSignal`. Document whether the downstream target needs the raw pulse, a binary state, or an accumulated `Count CHOP` value.
   - `audioAnalysis1` also contains a spectrum/feature lane: `switch_neutone -> audiospectrumCHOP(mode visual, fftsize 8192, frequencylog 1, highfreqboost 1, outlength 2048) -> shuffle/analyze/trail` to derive rhythm density, moving partial density, and spectral centroid. This belongs in the `audio-analysis-comp -> role-separated control bus` recipe, while a direct `audiospectrumCHOP -> CHOP to TOP` belongs in `spectrum-top -> image/mask/displacement source`.
-  - If testing a copied `.toe`, preserve relative media folders. This project references `music/▶ Dive Deep.m4a`; moving the `.toe` without the `music/` folder can make current output values read as zero even though the network topology is valid.
+  - If testing a copied `.toe`, preserve its relative media folders. Moving the `.toe` without referenced audio files can make current output values read as zero even though the network topology is valid.
 
 ## Troubleshooting
 
-- Internal block note: `audio-filein-peak-speed` captures the tested single-flow Audio File In block from `kick.toe`. Important verified parameters are `math3.chanop=avg`, `math3.gain=0.5`, `analyze1.function=maximum`, `filter1.type=gauss`, `filter1.width=0.2 seconds`, and `math2.gain=100`. Treat `speed2` as cumulative motion/integration, not a value that should numerically match between separately started copies.
-- Internal block note: `audio-kick-rms-spectrum` captures the tested `kick.3.toe` three-lane block. Important verified paths are `audioAnalysis1/out1 -> select1(kick snare) -> count2`, `math4(chanop avg) -> analyze2(rmspower) -> speed3 -> math5`, and `math4 -> audiospect1(mode visual, fftsize 8192, highfreqboost 0.75, outlength 2048) -> null8`.
+- Reference block: `audio-filein-peak-speed` captures a tested single-flow Audio File In pattern. Important verified parameters are `math3.chanop=avg`, `math3.gain=0.5`, `analyze1.function=maximum`, `filter1.type=gauss`, `filter1.width=0.2 seconds`, and `math2.gain=100`. Treat `speed2` as cumulative motion/integration, not a value that should numerically match between separately started copies.
+- Reference block: `audio-kick-rms-spectrum` captures a tested three-lane pattern. Important verified paths are `audioAnalysis1/out1 -> select1(kick snare) -> count2`, `math4(chanop avg) -> analyze2(rmspower) -> speed3 -> math5`, and `math4 -> audiospect1(mode visual, fftsize 8192, highfreqboost 0.75, outlength 2048) -> null8`.
+- If `audio-kick-rms-spectrum` fails in another project, check Audio Analysis availability first. The common failure is not CHOP wiring; it is that the target project has no existing `Audio Analysis COMP` to copy. Resolve or import that component before creating `select(kick snare)`.
 
 - No reaction: confirm the audio source cooks, the channel is selected by the exact name, exports are enabled, and the target parameter is not overridden by another expression/export.
 - Weak reaction: inspect the observed audio range, raise gain in one place, or remap to a more sensitive target range.

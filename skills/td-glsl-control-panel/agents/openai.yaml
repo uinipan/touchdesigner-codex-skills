@@ -1,0 +1,6 @@
+interface:
+  display_name: "TD GLSL Control Panel"
+  short_description: "Expose and inspect TouchDesigner GLSL controls visually."
+  default_prompt: "Use $td-glsl-control-panel to expose this shader's useful parameters through named CHOP controls, separate runtime state, and add compile/status visibility."
+policy:
+  allow_implicit_invocation: true

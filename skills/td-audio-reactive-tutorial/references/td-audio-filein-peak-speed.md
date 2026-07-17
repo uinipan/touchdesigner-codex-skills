@@ -1,6 +1,6 @@
-# kick.toe File In Peak Speed Flow
+# TD Audio File In Peak Speed
 
-Observed compact single-flow audio block under `/project1`:
+Reference compact single-flow audio block:
 
 ```text
 audiofilein1
@@ -48,4 +48,3 @@ The block was recreated in `/project1` with test node names. The first attempt d
 - Use this flow when a project needs a simple overall-energy envelope plus an accumulated motion driver.
 - Keep it separate from `Audio Analysis COMP` workflows, which produce prebuilt channels such as `kick`, `snare`, `low`, `mid`, and `high`.
 - Keep it separate from spectrum workflows. Spectrum produces frequency bins or texture data rather than the same kind of control signal as `null6`.
-

@@ -1,0 +1,6 @@
+interface:
+  display_name: "TD Audio Plugin Handoff"
+  short_description: "Connect audio_reactive_tools outputs to clear TD control interfaces."
+  default_prompt: "Use $td-audio-plugin-handoff to inspect my audio_reactive_tools plugin, connect the required outputs, and rename downstream Null CHOPs by signal role."
+policy:
+  allow_implicit_invocation: true

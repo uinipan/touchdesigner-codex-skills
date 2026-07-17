@@ -7,7 +7,7 @@ description: Learn TouchDesigner tutorials focused on Container COMP, Panel COMP
 
 Use this skill to turn Container COMP and Panel COMP tutorials into reusable TouchDesigner UI knowledge. This direction is about how a person operates a patch, not the visual system being controlled.
 
-When learning a series of UI tutorials, maintain one skill-level note instead of one note per video. Append series evidence, timestamps, and reusable findings to your own project notes or knowledge base, then link to concrete tutorial notes only when a single video becomes a standalone build note.
+When learning a series of UI tutorials, maintain one direction-level note instead of one note per video. Append series evidence, timestamps, and reusable findings there, then link to concrete tutorial notes only when a single video becomes a standalone build note.
 
 Chapters are only a table of contents. For real UI learning, read the captions/transcript and inspect keyframes before preserving any parameter, expression, panel-state, or layout rule.
 

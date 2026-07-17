@@ -1,0 +1,6 @@
+interface:
+  display_name: "Auto TouchDesigner MCP"
+  short_description: "Connect, inspect, edit, and diagnose live TouchDesigner projects."
+  default_prompt: "Use $auto-touchdesigner-mcp to connect to the live TouchDesigner project, inspect primitive CHOP/DAT/GLSL state safely, make the requested change, and verify errors and output."
+policy:
+  allow_implicit_invocation: true
