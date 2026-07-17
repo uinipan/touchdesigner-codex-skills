@@ -1,0 +1,6 @@
+interface:
+  display_name: "TD Progressive Region Reveal"
+  short_description: "Build non-repeating cumulative reveal systems in TouchDesigner."
+  default_prompt: "Use $td-progressive-region-reveal to make event pulses progressively activate unique regions, preview the next region, verify full coverage, and reset after a visible hold."
+policy:
+  allow_implicit_invocation: true

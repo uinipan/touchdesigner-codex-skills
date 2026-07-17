@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Tutorial Learner"
+  short_description: "Learn tutorials and turn directions into skills."
+  default_prompt: "Use $video-tutorial-to-build to learn this tutorial, classify its direction, and create or update a reusable skill."

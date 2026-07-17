@@ -1,56 +1,66 @@
-﻿# TouchDesigner Skills
+# TouchDesigner Codex Skills
 
-## 中文
+English | [中文](./README.zh-CN.md)
 
-这是一个 TouchDesigner Codex skills 仓库，用来公开可复用的 TD 学习和工作流技能。
+A curated collection of reusable Codex skills and workflows for TouchDesigner learning, building, inspection, and debugging.
 
-当前包含两个 skill：
+This repository is paired with [touchdesigner-codex-plugins](https://github.com/uinipan/touchdesigner-codex-plugins).
 
-- [`td-audio-reactive-tutorial`](skills/td-audio-reactive-tutorial/README.md)：音频响应方向。整理 `Audio File In`、RMS、peak、kick/snare、spectrum、Audio Analysis COMP，以及音频信号到视觉参数的映射。
-- [`td-ui-panel-interface-tutorial`](skills/td-ui-panel-interface-tutorial/README.md)：UI / Panel Interface 方向。整理 Container COMP、Panel COMP、Button、Slider、Table/List、widgets、perform mode 和控制面板。
+## Repository structure
 
-每个 skill 目录里都有自己的 `README.md` 和 `SKILL.md`。
+```text
+skills/
+  td-audio-reactive-tutorial/
+    references/
+    companion-skills/td-audio-plugin-handoff/
+  td-ui-panel-interface-tutorial/
+  td-glsl-control-panel/
+  td-particle-instancing-tutorial/
+  td-progressive-region-reveal/
 
-### 安装
-
-从仓库根目录运行：
-
-```powershell
-Copy-Item -Recurse -Force ".\skills\td-audio-reactive-tutorial" "$env:USERPROFILE\.codex\skills\td-audio-reactive-tutorial"
-Copy-Item -Recurse -Force ".\skills\td-ui-panel-interface-tutorial" "$env:USERPROFILE\.codex\skills\td-ui-panel-interface-tutorial"
+workflows/
+  auto-touchdesigner-mcp/
+  video-tutorial-to-build/
 ```
 
-安装后，在 Codex 里可以用自然语言触发，例如：
+Only skills with meaningful, reusable content are published. Placeholder directions remain unpublished until they are ready.
 
-- “帮我整理这个 TD 音频响应教程。”
-- “用 kick / RMS / spectrum 做 TD 控制信号。”
-- “用 Container COMP 做一个控制面板。”
-- “做一组 button / slider 控件。”
+## Skills
 
-## English
+| Skill | Purpose |
+| --- | --- |
+| `td-audio-reactive-tutorial` | Extract reusable envelopes, triggers, counters, spectrum data, and audio-to-visual mappings. |
+| `td-audio-plugin-handoff` | Connect the packaged audio plugin to clearly named downstream CHOP interfaces. |
+| `td-ui-panel-interface-tutorial` | Build operator interfaces with containers, panels, buttons, sliders, layouts, and perform mode. |
+| `td-glsl-control-panel` | Expose GLSL controls and status through a readable TouchDesigner control surface. |
+| `td-particle-instancing-tutorial` | Build and debug particles, point clouds, image particles, and instancing systems. |
+| `td-progressive-region-reveal` | Reveal non-repeating regions progressively from triggers, with persistent state and reset logic. |
 
-This repository contains public TouchDesigner Codex skills for reusable TD learning and workflow patterns.
+## Workflows
 
-Included skills:
+| Workflow | Purpose |
+| --- | --- |
+| `auto-touchdesigner-mcp` | Bootstrap and repair the TouchDesigner MCP WebServer, then inspect or modify a live project. |
+| `video-tutorial-to-build` | Collect tutorial transcripts and keyframes, classify techniques, and extract reusable knowledge. |
 
-- [`td-audio-reactive-tutorial`](skills/td-audio-reactive-tutorial/README.md): audio-reactive workflows, including `Audio File In`, RMS, peak, kick/snare, spectrum, Audio Analysis COMP, and audio-to-visual parameter mapping.
-- [`td-ui-panel-interface-tutorial`](skills/td-ui-panel-interface-tutorial/README.md): UI / Panel Interface workflows, including Container COMP, Panel COMP, Button, Slider, Table/List, widgets, perform mode, and control panels.
+## Installation
 
-Each skill folder includes its own `README.md` and `SKILL.md`.
-
-### Install
-
-Run from the repository root:
+Copy the folder you need into your Codex skills directory. For example:
 
 ```powershell
-Copy-Item -Recurse -Force ".\skills\td-audio-reactive-tutorial" "$env:USERPROFILE\.codex\skills\td-audio-reactive-tutorial"
-Copy-Item -Recurse -Force ".\skills\td-ui-panel-interface-tutorial" "$env:USERPROFILE\.codex\skills\td-ui-panel-interface-tutorial"
+Copy-Item -Recurse -Force ".\skills\td-glsl-control-panel" "$env:USERPROFILE\.codex\skills\td-glsl-control-panel"
+Copy-Item -Recurse -Force ".\workflows\video-tutorial-to-build" "$env:USERPROFILE\.codex\skills\video-tutorial-to-build"
 ```
 
-After installing, you can invoke the skills in Codex with natural language, for example:
+Restart Codex after installing or updating a skill.
 
-- "Help me summarize this TouchDesigner audio-reactive tutorial."
-- "Use kick, RMS, and spectrum data as TD control signals."
-- "Build a control panel with Container COMP."
-- "Create a group of button and slider controls."
+## Documentation policy
 
+- `README.md` and `README.zh-CN.md` are public, human-facing overviews.
+- `SKILL.md` contains the executable instructions used by Codex.
+- Reusable technical detail may live in `references/`.
+- Personal paths, maintenance logs, one-off validation history, and unfinished ideas belong in private development notes rather than this repository.
+
+## License
+
+MIT. See [LICENSE](./LICENSE).
