@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD MediaPipe Pinch Interaction"
+  short_description: "构建和校准 TouchDesigner 手指捏合交互"
+  default_prompt: "Use $td-mediapipe-pinch-interaction to build and calibrate a MediaPipe thumb-index pinch interaction in TouchDesigner."

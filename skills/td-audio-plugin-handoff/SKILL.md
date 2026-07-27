@@ -9,7 +9,7 @@ Use the packaged plugin instead of rebuilding its internal audio-analysis networ
 
 ## Plugin
 
-- TOX: locate `audio_reactive_tools.tox` in the user-provided plugin directory or project. Do not assume a machine-specific absolute path.
+- Locate `audio_reactive_tools.tox` in the user's plugin collection or cloned `touchdesigner-codex-plugins` repository. Do not assume a machine-specific absolute path.
 - Input 0: an audio CHOP, normally Audio File In, Audio Device In, or a source Null CHOP.
 - Do not modify or unpack the TOX unless the user explicitly asks to develop the plugin itself.
 - Before wiring, inspect the loaded COMP and verify the output operators and channel names. Treat the list below as the expected contract, not a substitute for inspection.

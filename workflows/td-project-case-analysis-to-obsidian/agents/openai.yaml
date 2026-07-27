@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD Project Case Analysis to Obsidian"
+  short_description: "Research TD case studies and save evidence-based Obsidian notes"
+  default_prompt: "Use $td-project-case-analysis-to-obsidian to research this case, analyze its TouchDesigner system logic, and save a structured project case study in Obsidian."

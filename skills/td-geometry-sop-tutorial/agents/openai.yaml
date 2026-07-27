@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD Geometry SOP Tutorial"
+  short_description: "Reusable TD geometry and SOP workflows."
+  default_prompt: "Use this skill to learn a TouchDesigner geometry/SOP tutorial and produce reusable node, parameter, and visual checkpoint guidance."
