@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD Data Python Protocol Tutorial"
+  short_description: "Reusable TD data, Python, and protocol workflows."
+  default_prompt: "Use this skill to learn a TouchDesigner DAT, Python, data model, OSC, WebSocket, MIDI, or protocol tutorial and produce reusable data-flow, scripting, and debugging guidance."

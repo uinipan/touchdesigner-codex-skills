@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD Interaction Tracking Tutorial"
+  short_description: "Reusable TD tracking and interaction workflows."
+  default_prompt: "Use this skill to learn a TouchDesigner interaction, tracking, sensor, or MediaPipe tutorial and produce reusable input, mapping, calibration, and experiment guidance."

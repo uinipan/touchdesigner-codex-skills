@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Note Maintainer"
+  short_description: "Maintain dated, synchronized Obsidian Markdown notes"
+  default_prompt: "Use $obsidian-note-maintainer to update and synchronize an Obsidian note with a dated change record."

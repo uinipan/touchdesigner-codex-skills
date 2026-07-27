@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD Compositing Render Tutorial"
+  short_description: "Reusable TD render and TOP workflows."
+  default_prompt: "Use this skill to learn a TouchDesigner compositing, rendering, camera, lighting, material, or TOP post-processing tutorial and produce reusable render-network, TOP chain, and visual checkpoint guidance."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD GLSL Shader Tutorial"
+  short_description: "Reusable TD GLSL and shader workflows."
+  default_prompt: "Use this skill to learn a TouchDesigner GLSL/shader tutorial and produce reusable shader structure, uniforms, feedback, and visual checkpoint guidance."
