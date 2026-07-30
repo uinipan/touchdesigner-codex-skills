@@ -8,14 +8,13 @@ This repository is paired with [touchdesigner-codex-plugins](https://github.com/
 
 ## Contents
 
-The repository currently publishes 12 TouchDesigner skills and 4 supporting workflows. Each folder uses `SKILL.md` as its authoritative Codex instruction file; individual skill folders do not carry duplicate README files.
+The repository currently publishes 11 TouchDesigner skills and 4 supporting workflows. Each folder uses `SKILL.md` as its authoritative Codex instruction file; individual skill folders do not carry duplicate README files.
 
 ### TouchDesigner skills
 
 | Skill | Purpose |
 | --- | --- |
-| [`td-audio-plugin-handoff`](./skills/td-audio-plugin-handoff/SKILL.md) | Connect the packaged audio plugin to semantic downstream CHOP interfaces. |
-| [`td-audio-reactive-tutorial`](./skills/td-audio-reactive-tutorial/SKILL.md) | Extract envelopes, triggers, counters, spectrum data, and audio-to-visual mappings. |
+| [`td-audio-reactive`](./skills/td-audio-reactive/SKILL.md) | Build, connect, tune, and debug audio-reactive systems using the packaged TOX first, with manual analysis and tutorial patterns as supporting references. |
 | [`td-compositing-render-tutorial`](./skills/td-compositing-render-tutorial/SKILL.md) | Learn reusable Render TOP, camera, lighting, compositing, feedback, and post-processing pipelines. |
 | [`td-data-python-protocol-tutorial`](./skills/td-data-python-protocol-tutorial/SKILL.md) | Learn DAT, Python, callback, OSC, MIDI, WebSocket, HTTP, serial, and external-data workflows. |
 | [`td-geometry-sop-tutorial`](./skills/td-geometry-sop-tutorial/SKILL.md) | Learn procedural SOP geometry, curves, surfaces, deformation, attributes, and mesh workflows. |

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TD Audio Reactive"
+  short_description: "Build reliable audio-reactive TouchDesigner systems"
+  default_prompt: "Use $td-audio-reactive to connect my audio TOX to a TouchDesigner visual and tune the signal mapping."
