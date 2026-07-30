@@ -1,4 +1,0 @@
-interface:
-  display_name: "TD Audio Reactive Tutorial"
-  short_description: "Reusable TD audio-reactive workflows."
-  default_prompt: "Use this skill to learn a TouchDesigner audio-reactive tutorial and produce reusable CHOP, mapping, smoothing, and visual checkpoint guidance."

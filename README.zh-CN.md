@@ -8,14 +8,13 @@
 
 ## 当前内容
 
-目前公开 12 个 TouchDesigner Skill 和 4 个辅助工作流。每个目录以 `SKILL.md` 作为 Codex 的正式执行说明，不在单个 Skill 内重复放置 README。
+目前公开 11 个 TouchDesigner Skill 和 4 个辅助工作流。每个目录以 `SKILL.md` 作为 Codex 的正式执行说明，不在单个 Skill 内重复放置 README。
 
 ### TouchDesigner Skills
 
 | Skill | 用途 |
 | --- | --- |
-| [`td-audio-plugin-handoff`](./skills/td-audio-plugin-handoff/SKILL.md) | 将已打包的音频插件连接为语义清晰的下游 CHOP 接口。 |
-| [`td-audio-reactive-tutorial`](./skills/td-audio-reactive-tutorial/SKILL.md) | 提取包络、触发、计数、频谱和音频到视觉参数的映射方法。 |
+| [`td-audio-reactive`](./skills/td-audio-reactive/SKILL.md) | 优先使用已打包 TOX 构建、连接、调试音频响应系统，并以手动分析方法和教程模式作为补充参考。 |
 | [`td-compositing-render-tutorial`](./skills/td-compositing-render-tutorial/SKILL.md) | 学习 Render TOP、相机、灯光、合成、反馈及后期处理流程。 |
 | [`td-data-python-protocol-tutorial`](./skills/td-data-python-protocol-tutorial/SKILL.md) | 学习 DAT、Python、回调、OSC、MIDI、WebSocket、HTTP、串口和外部数据工作流。 |
 | [`td-geometry-sop-tutorial`](./skills/td-geometry-sop-tutorial/SKILL.md) | 学习程序化 SOP 几何、曲线、曲面、形变、属性和网格流程。 |
