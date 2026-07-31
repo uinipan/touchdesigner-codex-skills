@@ -1,0 +1,4 @@
+interface:
+  display_name: "网站图片简易排版"
+  short_description: "简单分类、并排、缩放和对齐网站图片"
+  default_prompt: "将网站图片按内容简单分类，并使用通栏或双列布局完成缩放、裁剪和对齐。"
