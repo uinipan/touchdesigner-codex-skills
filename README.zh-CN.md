@@ -8,7 +8,7 @@
 
 ## 当前内容
 
-目前公开 11 个 TouchDesigner Skill 和 4 个辅助工作流。每个目录以 `SKILL.md` 作为 Codex 的正式执行说明，不在单个 Skill 内重复放置 README。
+目前公开 11 个 TouchDesigner Skill 和 5 个辅助工作流。每个目录以 `SKILL.md` 作为 Codex 的正式执行说明，不在单个 Skill 内重复放置 README。
 
 ### TouchDesigner Skills
 
@@ -36,6 +36,7 @@
 | [`obsidian-note-maintainer`](./workflows/obsidian-note-maintainer/SKILL.md) | 维护 Obsidian 笔记、索引、工作区镜像及同步校验。 |
 | [`td-project-case-analysis-to-obsidian`](./workflows/td-project-case-analysis-to-obsidian/SKILL.md) | 调研真实 TouchDesigner 项目、重建系统逻辑，并把带证据层级的案例分析写入 Obsidian。 |
 | [`video-tutorial-to-build`](./workflows/video-tutorial-to-build/SKILL.md) | 收集教程字幕与关键帧、判断技术方向并提取可复用知识。 |
+| [`website-image-layout`](./workflows/website-image-layout/SKILL.md) | 将项目与作品集图片整理为克制、响应式的网站画廊排版。 |
 
 ## 安装
 

@@ -8,7 +8,7 @@ This repository is paired with [touchdesigner-codex-plugins](https://github.com/
 
 ## Contents
 
-The repository currently publishes 11 TouchDesigner skills and 4 supporting workflows. Each folder uses `SKILL.md` as its authoritative Codex instruction file; individual skill folders do not carry duplicate README files.
+The repository currently publishes 11 TouchDesigner skills and 5 supporting workflows. Each folder uses `SKILL.md` as its authoritative Codex instruction file; individual skill folders do not carry duplicate README files.
 
 ### TouchDesigner skills
 
@@ -36,6 +36,7 @@ These workflows coordinate tools or multiple skills. Some reflect `uinipan`'s lo
 | [`obsidian-note-maintainer`](./workflows/obsidian-note-maintainer/SKILL.md) | Maintain Obsidian notes, indexes, workspace mirrors, and synchronization checks. |
 | [`td-project-case-analysis-to-obsidian`](./workflows/td-project-case-analysis-to-obsidian/SKILL.md) | Research real TouchDesigner projects, reconstruct system logic, and write evidence-aware case studies to Obsidian. |
 | [`video-tutorial-to-build`](./workflows/video-tutorial-to-build/SKILL.md) | Collect tutorial transcripts and keyframes, classify techniques, and extract reusable knowledge. |
+| [`website-image-layout`](./workflows/website-image-layout/SKILL.md) | Arrange project and portfolio images into restrained responsive website galleries. |
 
 ## Installation
 
